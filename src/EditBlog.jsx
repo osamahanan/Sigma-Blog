@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
+import { server } from "./main";
 
 const EditBlog = () => {
   const [author, setAuthor] = useState("");
@@ -30,7 +31,7 @@ const EditBlog = () => {
   // Get single blog
   const getBlog = async () => {
     try {
-      const { data } = await axios.get(`https://sigma-blog-backend.vercel.app/api/get/blog/${id}`);
+      const { data } = await axios.get(`${server}/api/get/blog/${id}`);
       console.log(data);
 
       setAuthor(data?.getSingle?.author);

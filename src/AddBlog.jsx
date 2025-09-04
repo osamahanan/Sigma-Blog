@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useParams, Link } from "react-router-dom";
 import { Navigate, useNavigate } from 'react-router-dom'
+import { server } from "./main";
 const AddBlog = () => {
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
@@ -29,7 +30,7 @@ const AddBlog = () => {
   const handlesubmit = async (e) => {
     try {
       e.preventDefault()
-      const { data } = await axios.post("https://sigma-blog-backend.vercel.app/api/save/blog", {
+      const { data } = await axios.post(`${server}/api/save/blog`, {
         author, title, description, image: imageBase64, category
       })
       console.log(data);

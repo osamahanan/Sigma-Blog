@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { server } from "./main";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -9,7 +10,7 @@ const BlogList = () => {
   // Fetch blogs
   const getBlogs = async () => {
     try {
-      const { data } = await axios.get("https://sigma-blog-backend.vercel.app/api/get/blog");
+      const { data } = await axios.get(`${server}/api/get/blog`);
       setBlogs(data?.AllData || []);
     } catch (error) {
       toast.error("Failed to load blogs");

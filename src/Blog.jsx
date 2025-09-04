@@ -1,13 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from "react-router-dom";
+import { server } from './main';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([])
 
   const getBlogs = async () => {
     try {
-      const { data } = await axios.get("https://sigma-blog-backend.vercel.app/api/get/blog")
+      const { data } = await axios.get(`${server}/api/get/blog`)
       setBlogs(data?.AllData);
       console.log(data);
     } catch (error) {
